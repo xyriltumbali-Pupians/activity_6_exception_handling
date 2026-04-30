@@ -1,18 +1,16 @@
-from calculator import Calculator 
+from calculator import Calculator
 
-class Operations(Calculator): 
+
+class Operations(Calculator):
+    """Extended calculator operations with error handling and validation."""
+
     def add(self, a, b):
+        self._validate_numbers(a, b)
         return a + b
-
+    
     def subtract(self, a, b):
+        self._validate_numbers(a, b)
         return a - b
+    
 
-    def multiply(self, a, b):
-        return a * b
-
-    def divide(self, a, b):
-        try:
-            return a / b
-        except ZeroDivisionError:
-            print("Error: Cannot divide by zero!")
-            return None
+    
