@@ -1,15 +1,17 @@
-class Calculator:
-    def __init__(self):
-        self.operations = {
-            "1": ("Addition", lambda a, b: a + b),
-            "2": ("Subtraction", lambda a, b: a - b),
-            "3": ("Multiplication", lambda a, b: a * b),
-            "4": ("Division", self.safe_divide)
-        }
+from operations import Addition, Subtraction, Multiplication, Division
+from exceptions import InvalidInputError, CalculatorError
 
-    def get_numbers(self):
-        while True:
-            try:
-                num1 = float(input("Enter first number: "))
-                num2 = float(input("Enter second number: "))
-               
+
+class CalculatorApp:
+    def __init__(self):
+        self.history = []
+        self.last_result = None
+
+    def display_menu(self):
+        print("\n==== CALCULATOR APP ====")
+        print("[1] Add")
+        print("[2] Subtract")
+        print("[3] Multiply")
+        print("[4] Divide")
+        print("[5] View History")
+        print("[0] Exit")
