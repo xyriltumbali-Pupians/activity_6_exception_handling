@@ -15,3 +15,19 @@ class CalculatorApp:
         print("[4] Divide")
         print("[5] View History")
         print("[0] Exit")
+        
+    def get_numbers(self):
+        try:
+            a = float(input("Enter first number: "))
+            b = float(input("Enter second number: "))
+            return a, b
+        except ValueError:
+            raise InvalidInputError("Invalid input! Please enter numbers only.")
+
+    def perform_operation(self, choice, a, b):
+        operations = {
+            "1": Addition(),
+            "2": Subtraction(),
+            "3": Multiplication(),
+            "4": Division()
+        }
