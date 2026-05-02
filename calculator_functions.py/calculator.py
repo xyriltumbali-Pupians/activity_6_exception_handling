@@ -18,13 +18,13 @@ class CalculatorApp:
 
     def get_numbers(self):
         try:
-            a = float(input("Enter first number: "))
-            b = float(input("Enter second number: "))
-            return a, b
+            num1 = float(input("Enter first number: "))
+            num2 = float(input("Enter second number: "))
+            return num1, num2
         except ValueError:
             raise InvalidInputError("Invalid input! Please enter numbers only.")
 
-    def perform_operation(self, choice, a, b):
+    def perform_operation(self, choice, num1, num2):
         operations = {
             "1": Addition(),
             "2": Subtraction(),
@@ -36,11 +36,11 @@ class CalculatorApp:
         if not operation:
             raise InvalidInputError("Invalid operation selected!")
 
-        return operation.calculate(a, b)
+        return operation.calculate(num1, num2)
 
-    def save_history(self, a, b, choice, result):
+    def save_history(self, num1, num2, choice, result):
         symbols = {"1": "+", "2": "-", "3": "*", "4": "/"}
-        self.history.append(f"{a} {symbols.get(choice)} {b} = {result}")
+        self.history.append(f"{num1} {symbols.get(choice)} {num2} = {result}")
 
     def show_history(self):
         if not self.history:
@@ -63,11 +63,11 @@ class CalculatorApp:
                 continue
 
             try:
-                a, b = self.get_numbers()
-                result = self.perform_operation(choice, a, b)
+                num1, num2 = self.get_numbers()
+                result = self.perform_operation(choice, num1, num2)
 
                 print(f"Result: {result}")
-                self.save_history(a, b, choice, result)
+                self.save_history(num1, num2, choice, result)
                 self.last_result = result
 
             except CalculatorError as e:
